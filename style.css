@@ -23,7 +23,7 @@ body {
   position: relative;
 }
 
-/* ===== SUN (ANIMATED SETTING) ===== */
+/* ===== SUN ===== */
 .sun {
   position: fixed;
   bottom: 45vh;
@@ -42,12 +42,11 @@ body {
   z-index: -2;
 }
 
-/* Sun animation */
 @keyframes sunset {
-  0% {
+  from {
     bottom: 45vh;
   }
-  100% {
+  to {
     bottom: 15vh;
   }
 }
@@ -76,7 +75,7 @@ body::after {
   z-index: -1;
 }
 
-/* ===== FLOWERS (VERY VISIBLE) ===== */
+/* ===== FLOATING FLOWERS ===== */
 .flower-container {
   position: fixed;
   inset: 0;
@@ -86,7 +85,7 @@ body::after {
 .floating-flower {
   position: absolute;
   font-size: 1.6rem;
-  color: #ffeb3b; /* STRONG yellow */
+  color: #ffeb3b;
   left: 25%;
   top: 110%;
   animation: floatUp 14s linear infinite;
