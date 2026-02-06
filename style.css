@@ -47,7 +47,7 @@ body.phase-sunset .sun {
   top: 45vh;
 }
 
-/* FLOWERS */
+/* FLOATING FLOWERS */
 .flower-container {
   position: fixed;
   inset: 0;
@@ -69,7 +69,9 @@ body.phase-sunset .sun {
 }
 
 @keyframes floatUp {
-  to { transform: translateY(-140vh); }
+  to {
+    transform: translateY(-140vh);
+  }
 }
 
 /* CONTENT */
@@ -78,17 +80,6 @@ body.phase-sunset .sun {
   margin: auto;
   padding: 140px 24px;
   text-align: center;
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1.2s ease;
-}
-
-.fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 h1 {
@@ -123,6 +114,18 @@ p {
   margin-bottom: 10px;
 }
 
+/* FADE IN */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* TAP HINT */
 .tap-hint {
   opacity: 0;
@@ -137,21 +140,24 @@ p {
 
 /* FINAL FLOWER */
 .final-flower-container {
-  margin-top: 60px;
+  margin-top: 80px;
   position: relative;
-  height: 260px;
+  height: 360px;
 }
 
 .final-flower {
   position: absolute;
   left: 50%;
-  top: 120px;
+  top: 100px;
   transform: translateX(-50%);
   font-size: 4rem;
   color: #ffeb3b;
   text-shadow: 0 0 12px #ffd600;
   opacity: 0;
-  transition: left 1.8s ease, top 1.8s ease, opacity 1.5s ease;
+  transition:
+    left 1.8s ease,
+    top 1.8s ease,
+    opacity 1.5s ease;
 }
 
 .final-flower.show {
@@ -159,11 +165,16 @@ p {
 }
 
 .final-line {
-  margin-top: 200px;
+  position: absolute;
+  top: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   font-size: 1.05rem;
   opacity: 0;
   transition: opacity 1.6s ease;
   font-style: italic;
+  text-align: center;
 }
 
 .final-line.show {
