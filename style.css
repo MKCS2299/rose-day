@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/* ===== SUNSET SKY ===== */
+/* ===== SKY ===== */
 body {
   font-family: 'Playfair Display', serif;
   min-height: 100vh;
@@ -15,33 +15,41 @@ body {
   background: linear-gradient(
     to top,
     #2a1a0f 0%,
-    #5a2e1b 30%,
-    #d96b3c 55%,
-    #ffb46a 75%,
+    #6b2f1a 30%,
+    #e07a3f 55%,
+    #ffb347 75%,
     #ffe6b3 100%
   );
   position: relative;
 }
 
-/* ===== SUN (VISIBLE SETTING SUN) ===== */
-body::before {
-  content: "";
+/* ===== SUN (ANIMATED SETTING) ===== */
+.sun {
   position: fixed;
-  bottom: 28vh;
+  bottom: 45vh;
   left: 50%;
   transform: translateX(-50%);
   width: 160px;
   height: 160px;
   background: radial-gradient(
     circle,
-    #ffd27d 0%,
-    #ffb347 45%,
-    #ff8c42 70%,
-    transparent 72%
+    #fff2b0 0%,
+    #ffcc33 45%,
+    #ff9933 70%
   );
   border-radius: 50%;
-  opacity: 0.9;
+  animation: sunset 25s linear infinite;
   z-index: -2;
+}
+
+/* Sun animation */
+@keyframes sunset {
+  0% {
+    bottom: 45vh;
+  }
+  100% {
+    bottom: 15vh;
+  }
 }
 
 /* ===== MOUNTAINS ===== */
@@ -52,69 +60,61 @@ body::after {
   left: 0;
   width: 100%;
   height: 35vh;
-  background: linear-gradient(
-    to top,
-    #1a1a1a,
-    #2a2a2a
-  );
+  background: linear-gradient(to top, #1a1a1a, #2a2a2a);
   clip-path: polygon(
     0% 100%,
     0% 60%,
-    12% 70%,
-    28% 55%,
-    42% 72%,
-    58% 50%,
-    72% 65%,
-    88% 55%,
+    15% 72%,
+    30% 55%,
+    45% 70%,
+    60% 50%,
+    75% 65%,
+    90% 55%,
     100% 65%,
     100% 100%
   );
   z-index: -1;
 }
 
-/* ===== FLOATING FLOWERS ===== */
+/* ===== FLOWERS (VERY VISIBLE) ===== */
 .flower-container {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
-  top: 0;
-  left: 0;
 }
 
 .floating-flower {
   position: absolute;
-  font-size: 1.3rem; /* small */
-  color: #ffd84d; /* bright yellow */
+  font-size: 1.6rem;
+  color: #ffeb3b; /* STRONG yellow */
   left: 25%;
   top: 110%;
-  animation: floatUp 18s linear infinite;
-  opacity: 0.95;
+  animation: floatUp 14s linear infinite;
+  opacity: 1;
   text-shadow:
-    0 0 6px rgba(255, 216, 77, 0.9),
-    0 0 12px rgba(255, 200, 50, 0.6);
+    0 0 4px #fff176,
+    0 0 8px #ffd600,
+    0 0 12px #ffea00;
 }
 
 .floating-flower.delay {
   left: 55%;
-  font-size: 1.1rem;
-  animation-delay: 7s;
+  font-size: 1.4rem;
+  animation-delay: 4s;
 }
 
 .floating-flower.extra {
   left: 75%;
-  font-size: 1rem;
-  animation-delay: 3s;
+  font-size: 1.2rem;
+  animation-delay: 2s;
 }
 
 @keyframes floatUp {
   from {
-    transform: translateY(0) scale(0.9);
-    opacity: 0;
+    transform: translateY(0);
   }
   to {
-    transform: translateY(-140vh) scale(1.1);
-    opacity: 1;
+    transform: translateY(-140vh);
   }
 }
 
@@ -122,17 +122,16 @@ body::after {
 .content {
   max-width: 720px;
   margin: auto;
-  padding: 120px 24px 200px;
+  padding: 120px 24px 220px;
   text-align: center;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 h1 {
   font-size: 2.6rem;
   margin-bottom: 40px;
   font-weight: 400;
-  letter-spacing: 0.5px;
 }
 
 p {
@@ -149,10 +148,9 @@ p {
 .signature {
   margin-top: 40px;
   font-style: italic;
-  opacity: 0.85;
 }
 
-/* ===== FADE-IN ===== */
+/* ===== FADE IN ===== */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
