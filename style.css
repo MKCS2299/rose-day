@@ -6,41 +6,29 @@
   box-sizing: border-box;
 }
 
-/* ===== PHASED SKY ===== */
+/* ===== SKY PHASES ===== */
 body {
   font-family: 'Playfair Display', serif;
   min-height: 100vh;
   overflow-x: hidden;
-  color: #2a1a12;
-  transition: background 4s ease, filter 4s ease;
+  transition: background 5s ease;
 }
 
-/* SUNNY */
+/* Sunny */
 body.phase-sun {
-  background: linear-gradient(to top, #87ceeb, #fefefe);
+  background: linear-gradient(to top, #87ceeb, #ffffff);
 }
 
-/* SUNSET */
+/* Sunset */
 body.phase-sunset {
   background: linear-gradient(
     to top,
     #2a1a0f 0%,
-    #6b2f1a 35%,
+    #6b233a 35%,
     #e07a3f 65%,
     #ffb347 85%,
     #ffe6b3 100%
   );
-}
-
-/* DUSK */
-body.phase-dusk {
-  background: linear-gradient(
-    to top,
-    #0f2027,
-    #203a43,
-    #2c5364
-  );
-  filter: brightness(0.75);
 }
 
 /* ===== SUN ===== */
@@ -53,7 +41,7 @@ body.phase-dusk {
   height: 140px;
   background: radial-gradient(circle, #fff6b7, #ffcc33);
   border-radius: 50%;
-  transition: top 8s ease, opacity 8s ease;
+  transition: top 10s ease;
   z-index: -1;
 }
 
@@ -61,12 +49,7 @@ body.phase-sunset .sun {
   top: 45vh;
 }
 
-body.phase-dusk .sun {
-  top: 65vh;
-  opacity: 0;
-}
-
-/* ===== FLOWERS ===== */
+/* ===== FLOATING FLOWERS ===== */
 .flower-container {
   position: fixed;
   inset: 0;
@@ -79,12 +62,12 @@ body.phase-dusk .sun {
   color: #ffeb3b;
   left: 30%;
   top: 110%;
-  animation: floatUp 16s linear infinite;
+  animation: floatUp 18s linear infinite;
 }
 
 .floating-flower.delay {
   left: 60%;
-  animation-delay: 6s;
+  animation-delay: 7s;
 }
 
 @keyframes floatUp {
@@ -93,28 +76,11 @@ body.phase-dusk .sun {
   }
 }
 
-/* ===== HERO FLOWER ===== */
-.hero-flower {
-  position: fixed;
-  bottom: 20vh;
-  left: 50%;
-  transform: translateX(-50%) scale(0);
-  font-size: 3rem;
-  color: #ffeb3b;
-  text-shadow: 0 0 12px #ffd600;
-  transition: transform 2s ease;
-  z-index: 2;
-}
-
-.hero-flower.show {
-  transform: translateX(-50%) scale(1);
-}
-
 /* ===== CONTENT ===== */
 .content {
   max-width: 720px;
   margin: auto;
-  padding: 140px 24px 240px;
+  padding: 140px 24px 260px;
   text-align: center;
 }
 
@@ -142,7 +108,7 @@ p {
 
 .whisper {
   font-size: 0.85rem;
-  opacity: 0.4;
+  opacity: 0.45;
   margin-top: 60px;
 }
 
@@ -150,7 +116,7 @@ p {
   margin-bottom: 10px;
 }
 
-/* ===== FADE-IN ===== */
+/* ===== FADE IN ===== */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -160,4 +126,44 @@ p {
 .fade-in.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ===== FINAL FLOWER ===== */
+.final-flower-container {
+  margin-top: 180px;
+  position: relative;
+  height: 320px;
+}
+
+.final-flower {
+  position: absolute;
+  left: 50%;
+  top: 140px;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  color: #ffeb3b;
+  text-shadow:
+    0 0 10px #fff176,
+    0 0 18px #ffd600;
+  opacity: 0;
+  transition:
+    left 1.8s ease,
+    top 1.8s ease,
+    opacity 1.5s ease;
+}
+
+.final-flower.show {
+  opacity: 1;
+}
+
+.final-line {
+  margin-top: 200px;
+  font-size: 1.05rem;
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  font-style: italic;
+}
+
+.final-line.show {
+  opacity: 0.85;
 }
