@@ -5,15 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const finalFlower = document.querySelector(".final-flower");
   const finalLine = document.querySelector(".final-line");
 
-  // AUTO TEXT SEQUENCE
+  // Auto text sequence
   lines.forEach((el, i) => {
     setTimeout(() => {
       el.classList.add("show");
 
-      // Switch to sunset mid-way
+      // Switch to sunset
       if (i === 3) body.className = "phase-sunset";
 
-      // After last line, show tap hint + flower
+      // After last line
       if (i === lines.length - 1) {
         setTimeout(() => {
           tapHint.classList.add("show");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let flowerMoved = false;
 
-  // ONE-TIME TAP INTERACTION
+  // One-time interaction
   document.body.addEventListener("click", (e) => {
     if (flowerMoved || !finalFlower.classList.contains("show")) return;
     flowerMoved = true;
