@@ -6,20 +6,18 @@
   box-sizing: border-box;
 }
 
-/* ===== SKY PHASES ===== */
 body {
   font-family: 'Playfair Display', serif;
   min-height: 100vh;
-  overflow-x: hidden;
-  transition: background 5s ease;
+  overflow: hidden;
+  transition: background 4s ease;
 }
 
-/* Sunny */
+/* SKY STATES */
 body.phase-sun {
   background: linear-gradient(to top, #87ceeb, #ffffff);
 }
 
-/* Sunset */
 body.phase-sunset {
   background: linear-gradient(
     to top,
@@ -31,7 +29,7 @@ body.phase-sunset {
   );
 }
 
-/* ===== SUN ===== */
+/* SUN */
 .sun {
   position: fixed;
   top: 15vh;
@@ -41,7 +39,7 @@ body.phase-sunset {
   height: 140px;
   background: radial-gradient(circle, #fff6b7, #ffcc33);
   border-radius: 50%;
-  transition: top 10s ease;
+  transition: top 8s ease;
   z-index: -1;
 }
 
@@ -49,7 +47,7 @@ body.phase-sunset .sun {
   top: 45vh;
 }
 
-/* ===== FLOATING FLOWERS ===== */
+/* FLOWERS */
 .flower-container {
   position: fixed;
   inset: 0;
@@ -58,7 +56,7 @@ body.phase-sunset .sun {
 
 .floating-flower {
   position: absolute;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #ffeb3b;
   left: 30%;
   top: 110%;
@@ -71,17 +69,30 @@ body.phase-sunset .sun {
 }
 
 @keyframes floatUp {
-  to {
-    transform: translateY(-140vh);
-  }
+  to { transform: translateY(-140vh); }
 }
 
-/* ===== CONTENT ===== */
+/* CONTENT */
 .content {
   max-width: 720px;
   margin: auto;
-  padding: 140px 24px 260px;
+  padding: 140px 24px;
   text-align: center;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h1 {
@@ -112,44 +123,23 @@ p {
   margin-top: 60px;
 }
 
-.pause {
-  margin-bottom: 10px;
-}
-
-/* ===== FADE IN ===== */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1.2s ease;
-}
-
-.fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== FINAL FLOWER ===== */
+/* FINAL FLOWER */
 .final-flower-container {
-  margin-top: 180px;
+  margin-top: 80px;
   position: relative;
-  height: 320px;
+  height: 260px;
 }
 
 .final-flower {
   position: absolute;
   left: 50%;
-  top: 140px;
+  top: 120px;
   transform: translateX(-50%);
   font-size: 4rem;
   color: #ffeb3b;
-  text-shadow:
-    0 0 10px #fff176,
-    0 0 18px #ffd600;
+  text-shadow: 0 0 12px #ffd600;
   opacity: 0;
-  transition:
-    left 1.8s ease,
-    top 1.8s ease,
-    opacity 1.5s ease;
+  transition: left 1.8s ease, top 1.8s ease, opacity 1.5s ease;
 }
 
 .final-flower.show {
