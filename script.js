@@ -1,34 +1,33 @@
-const steps = document.querySelectorAll(".fade-in");
-const body = document.body;
-const finalFlower = document.querySelector(".final-flower");
-const finalLine = document.querySelector(".final-line");
+document.addEventListener("DOMContentLoaded", () => {
+  const lines = document.querySelectorAll(".fade-in");
+  const body = document.body;
+  const tapHint = document.querySelector(".tap-hint");
+  const finalFlower = document.querySelector(".final-flower");
+  const finalLine = document.querySelector(".final-line");
 
-let step = 0;
-let flowerMoved = false;
+  // AUTO TEXT SEQUENCE
+  lines.forEach((el, i) => {
+    setTimeout(() => {
+      el.classList.add("show");
 
-document.body.addEventListener("click", (e) => {
+      // Switch to sunset mid-way
+      if (i === 3) body.className = "phase-sunset";
 
-  // Show text step-by-step
-  if (step < steps.length) {
-    steps[step].classList.add("show");
+      // After last line, show tap hint + flower
+      if (i === lines.length - 1) {
+        setTimeout(() => {
+          tapHint.classList.add("show");
+          finalFlower.classList.add("show");
+        }, 1200);
+      }
+    }, i * 900);
+  });
 
-    // Switch to sunset halfway
-    if (step === 3) {
-      body.className = "phase-sunset";
-    }
+  let flowerMoved = false;
 
-    step++;
-    return;
-  }
-
-  // Show flower
-  if (!finalFlower.classList.contains("show")) {
-    finalFlower.classList.add("show");
-    return;
-  }
-
-  // Move flower ONCE to cursor
-  if (!flowerMoved) {
+  // ONE-TIME TAP INTERACTION
+  document.body.addEventListener("click", (e) => {
+    if (flowerMoved || !finalFlower.classList.contains("show")) return;
     flowerMoved = true;
 
     const container = document.querySelector(".final-flower-container");
@@ -39,6 +38,7 @@ document.body.addEventListener("click", (e) => {
 
     setTimeout(() => {
       finalLine.classList.add("show");
+      tapHint.style.opacity = 0;
     }, 1800);
-  }
+  });
 });
