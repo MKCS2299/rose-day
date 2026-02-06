@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/* ===== SKY ===== */
+/* ===== SKY (INITIAL SUNSET) ===== */
 body {
   font-family: 'Playfair Display', serif;
   min-height: 100vh;
@@ -21,9 +21,23 @@ body {
     #ffe6b3 100%
   );
   position: relative;
+  animation: dimSky 22s ease-in forwards;
 }
 
-/* ===== SUN ===== */
+/* ===== SKY DIMMING AFTER SUNSET ===== */
+@keyframes dimSky {
+  0% {
+    filter: brightness(1);
+  }
+  70% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(0.55);
+  }
+}
+
+/* ===== SUN (FASTER SETTING) ===== */
 .sun {
   position: fixed;
   bottom: 45vh;
@@ -38,16 +52,18 @@ body {
     #ff9933 70%
   );
   border-radius: 50%;
-  animation: sunset 25s linear infinite;
+  animation: sunset 18s linear forwards;
   z-index: -2;
 }
 
 @keyframes sunset {
   from {
     bottom: 45vh;
+    opacity: 1;
   }
   to {
-    bottom: 15vh;
+    bottom: 14vh;
+    opacity: 0.15;
   }
 }
 
@@ -59,7 +75,7 @@ body::after {
   left: 0;
   width: 100%;
   height: 35vh;
-  background: linear-gradient(to top, #1a1a1a, #2a2a2a);
+  background: linear-gradient(to top, #151515, #2a2a2a);
   clip-path: polygon(
     0% 100%,
     0% 60%,
@@ -75,7 +91,7 @@ body::after {
   z-index: -1;
 }
 
-/* ===== FLOATING FLOWERS ===== */
+/* ===== FLOATING FLOWERS (STAY VISIBLE) ===== */
 .flower-container {
   position: fixed;
   inset: 0;
