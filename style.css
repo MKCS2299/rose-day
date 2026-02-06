@@ -13,7 +13,7 @@ body {
   transition: background 4s ease;
 }
 
-/* SKY STATES */
+/* SKY */
 body.phase-sun {
   background: linear-gradient(to top, #87ceeb, #ffffff);
 }
@@ -80,10 +80,6 @@ body.phase-sunset .sun {
   text-align: center;
 }
 
-.hidden {
-  opacity: 0;
-}
-
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -123,9 +119,25 @@ p {
   margin-top: 60px;
 }
 
+.pause {
+  margin-bottom: 10px;
+}
+
+/* TAP HINT */
+.tap-hint {
+  opacity: 0;
+  font-size: 0.9rem;
+  margin-top: 40px;
+  transition: opacity 1.5s ease;
+}
+
+.tap-hint.show {
+  opacity: 0.6;
+}
+
 /* FINAL FLOWER */
 .final-flower-container {
-  margin-top: 80px;
+  margin-top: 60px;
   position: relative;
   height: 260px;
 }
