@@ -6,92 +6,67 @@
   box-sizing: border-box;
 }
 
-/* ===== SKY (INITIAL SUNSET) ===== */
+/* ===== PHASED SKY ===== */
 body {
   font-family: 'Playfair Display', serif;
   min-height: 100vh;
   overflow-x: hidden;
   color: #2a1a12;
+  transition: background 4s ease, filter 4s ease;
+}
+
+/* SUNNY */
+body.phase-sun {
+  background: linear-gradient(to top, #87ceeb, #fefefe);
+}
+
+/* SUNSET */
+body.phase-sunset {
   background: linear-gradient(
     to top,
     #2a1a0f 0%,
-    #6b2f1a 30%,
-    #e07a3f 55%,
-    #ffb347 75%,
+    #6b2f1a 35%,
+    #e07a3f 65%,
+    #ffb347 85%,
     #ffe6b3 100%
   );
-  position: relative;
-  animation: dimSky 22s ease-in forwards;
 }
 
-/* ===== SKY DIMMING AFTER SUNSET ===== */
-@keyframes dimSky {
-  0% {
-    filter: brightness(1);
-  }
-  70% {
-    filter: brightness(1);
-  }
-  100% {
-    filter: brightness(0.55);
-  }
+/* DUSK */
+body.phase-dusk {
+  background: linear-gradient(
+    to top,
+    #0f2027,
+    #203a43,
+    #2c5364
+  );
+  filter: brightness(0.75);
 }
 
-/* ===== SUN (FASTER SETTING) ===== */
+/* ===== SUN ===== */
 .sun {
   position: fixed;
-  bottom: 45vh;
+  top: 15vh;
   left: 50%;
   transform: translateX(-50%);
-  width: 160px;
-  height: 160px;
-  background: radial-gradient(
-    circle,
-    #fff2b0 0%,
-    #ffcc33 45%,
-    #ff9933 70%
-  );
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, #fff6b7, #ffcc33);
   border-radius: 50%;
-  animation: sunset 18s linear forwards;
-  z-index: -2;
-}
-
-@keyframes sunset {
-  from {
-    bottom: 45vh;
-    opacity: 1;
-  }
-  to {
-    bottom: 14vh;
-    opacity: 0.15;
-  }
-}
-
-/* ===== MOUNTAINS ===== */
-body::after {
-  content: "";
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 35vh;
-  background: linear-gradient(to top, #151515, #2a2a2a);
-  clip-path: polygon(
-    0% 100%,
-    0% 60%,
-    15% 72%,
-    30% 55%,
-    45% 70%,
-    60% 50%,
-    75% 65%,
-    90% 55%,
-    100% 65%,
-    100% 100%
-  );
+  transition: top 8s ease, opacity 8s ease;
   z-index: -1;
 }
 
-/* ===== FLOATING FLOWERS (STAY VISIBLE) ===== */
+body.phase-sunset .sun {
+  top: 45vh;
+}
+
+body.phase-dusk .sun {
+  top: 65vh;
+  opacity: 0;
+}
+
+/* ===== FLOWERS ===== */
 .flower-container {
   position: fixed;
   inset: 0;
@@ -100,47 +75,47 @@ body::after {
 
 .floating-flower {
   position: absolute;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: #ffeb3b;
-  left: 25%;
+  left: 30%;
   top: 110%;
-  animation: floatUp 14s linear infinite;
-  opacity: 1;
-  text-shadow:
-    0 0 4px #fff176,
-    0 0 8px #ffd600,
-    0 0 12px #ffea00;
+  animation: floatUp 16s linear infinite;
 }
 
 .floating-flower.delay {
-  left: 55%;
-  font-size: 1.4rem;
-  animation-delay: 4s;
-}
-
-.floating-flower.extra {
-  left: 75%;
-  font-size: 1.2rem;
-  animation-delay: 2s;
+  left: 60%;
+  animation-delay: 6s;
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(0);
-  }
   to {
     transform: translateY(-140vh);
   }
+}
+
+/* ===== HERO FLOWER ===== */
+.hero-flower {
+  position: fixed;
+  bottom: 20vh;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  font-size: 3rem;
+  color: #ffeb3b;
+  text-shadow: 0 0 12px #ffd600;
+  transition: transform 2s ease;
+  z-index: 2;
+}
+
+.hero-flower.show {
+  transform: translateX(-50%) scale(1);
 }
 
 /* ===== CONTENT ===== */
 .content {
   max-width: 720px;
   margin: auto;
-  padding: 120px 24px 220px;
+  padding: 140px 24px 240px;
   text-align: center;
-  position: relative;
-  z-index: 2;
 }
 
 h1 {
@@ -161,11 +136,21 @@ p {
 }
 
 .signature {
-  margin-top: 40px;
   font-style: italic;
+  margin-top: 40px;
 }
 
-/* ===== FADE IN ===== */
+.whisper {
+  font-size: 0.85rem;
+  opacity: 0.4;
+  margin-top: 60px;
+}
+
+.pause {
+  margin-bottom: 10px;
+}
+
+/* ===== FADE-IN ===== */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -176,9 +161,3 @@ p {
   opacity: 1;
   transform: translateY(0);
 }
-
-.delay-1 { transition-delay: 0.6s; }
-.delay-2 { transition-delay: 1.2s; }
-.delay-3 { transition-delay: 1.8s; }
-.delay-4 { transition-delay: 2.4s; }
-.delay-5 { transition-delay: 3s; }
